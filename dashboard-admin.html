@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b63">
+  <title>Dashboard Admin | UNIVERSITAS HALU OLEO</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/admin.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="dashboard-admin.html" aria-label="UNIVERSITAS HALU OLEO Dashboard">
+        <span class="brand-icon logo-icon">
+          <img src="assets/logo-universitas-halu-oleo.png" alt="Logo Universitas Halu Oleo">
+        </span>
+        <span><strong>UNIVERSITAS HALU OLEO</strong><small>Sistem Ujian Online</small></span>
+      </a>
+
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="side-nav" aria-label="Navigasi utama">
+        <a class="nav-link active" href="#overview" data-section="overview"><span class="nav-symbol">▦</span> Dashboard</a>
+        <a class="nav-link" href="#questions" data-section="questions"><span class="nav-symbol">☷</span> Bank Soal <span class="soon-tag">API</span></a>
+        <a class="nav-link" href="#results" data-section="results"><span class="nav-symbol">▤</span> Hasil Ujian <span class="soon-tag">API</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="side-help">
+          <div class="help-bubble">?</div>
+          <strong>Butuh bantuan?</strong>
+          <p>Pastikan server API dan database aktif jika data tidak muncul.</p>
+        </div>
+        <button class="logout-button" id="logout-button" type="button"><span>↪</span> Keluar dari akun</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Buka navigasi" type="button">☰</button>
+        <div class="breadcrumbs"><span>UNIVERSITAS HALU OLEO</span><span class="crumb-separator">/</span><strong id="breadcrumb-current">Dashboard</strong></div>
+        <div class="topbar-right">
+          <span class="system-status"><i></i> Sistem aktif</span>
+          <div class="user-chip">
+            <div class="avatar" id="user-avatar">A</div>
+            <div class="user-chip-text"><strong id="header-username">Admin</strong><small>Administrator</small></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="overview-section" class="content-section">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow">PANEL ADMINISTRATOR</p>
+              <h1>Dashboard</h1>
+              <p class="page-subtitle">Selamat datang, <strong id="welcome-username">Admin</strong>. Berikut ringkasan sistem ujian saat ini.</p>
+            </div>
+            <div class="date-card"><span class="date-icon">▦</span><div><small>Hari ini</small><strong id="today-date">Memuat tanggal…</strong></div></div>
+          </div>
+
+          <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+          <div class="stat-grid">
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Total Soal</span><span class="stat-icon blue">☷</span></div>
+              <div class="stat-value" id="question-count">—</div>
+              <div class="stat-foot"><span class="tiny-dot blue-dot"></span> Data dari API bank soal</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Metode Pengiriman</span><span class="stat-icon violet">⌁</span></div>
+              <div class="stat-value stat-word">2 <span>metode</span></div>
+              <div class="stat-foot">Sequential dan Concurrent</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-label">Status API Soal</span><span class="stat-icon green">⌁</span></div>
+              <div class="stat-value stat-word" id="api-status">Memeriksa</div>
+              <div class="stat-foot"><span class="tiny-dot" id="api-dot"></span><span id="api-caption">Menghubungi backend</span></div>
+            </article>
+          </div>
+
+          <div class="main-grid">
+            <article class="panel quick-panel">
+              <div class="panel-heading"><div><h2>Akses cepat</h2><p>Pilih bagian sistem yang ingin dibuka.</p></div><span class="panel-heading-icon">↗</span></div>
+              <div class="quick-list">
+                <button class="quick-item" data-go="questions" type="button">
+                  <span class="quick-icon blue">☷</span><span class="quick-copy"><strong>Bank Soal</strong><small>Lihat soal yang tersedia dari API</small></span><span class="quick-arrow">→</span>
+                </button>
+                <button class="quick-item" data-go="results" type="button">
+                  <span class="quick-icon violet">▤</span><span class="quick-copy"><strong>Hasil Ujian</strong><small>Lihat petunjuk endpoint hasil ujian</small></span><span class="quick-arrow">→</span>
+                </button>
+              </div>
+            </article>
+
+            <article class="panel research-panel">
+              <div class="panel-heading"><div><h2>Informasi pengujian</h2><p>Komponen penelitian performa API.</p></div><span class="panel-heading-icon">ⓘ</span></div>
+              <div class="research-item"><span class="research-number">01</span><div><strong>Sequential Processing</strong><p>Jawaban diproses secara berurutan.</p></div></div>
+              <div class="research-item"><span class="research-number">02</span><div><strong>Concurrent Processing</strong><p>Pemrosesan jawaban menggunakan goroutine.</p></div></div>
+              <div class="research-note"><span>i</span> Pengukuran waktu respons dan beban tetap dilakukan menggunakan alat load testing, bukan dari kartu dashboard ini.</div>
+            </article>
+          </div>
+
+          <article class="panel system-panel">
+            <div class="panel-heading"><div><h2>Informasi sistem</h2><p>Konfigurasi koneksi yang digunakan frontend.</p></div><span class="connection-badge"><i></i> REST API</span></div>
+            <div class="system-info-grid">
+              <div><small>Alamat API</small><strong id="api-address">http://localhost:8080</strong></div>
+              <div><small>Endpoint soal</small><strong>GET /api/questions</strong></div>
+              <div><small>Database</small><strong>exam_api (MySQL)</strong></div>
+            </div>
+          </article>
+        </section>
+
+        <section id="questions-section" class="content-section" hidden>
+          <div class="page-heading-row"><div><p class="eyebrow">PENGELOLAAN KONTEN</p><h1>Bank Soal</h1><p class="page-subtitle">Daftar soal yang dibaca dari endpoint <code>GET /api/questions</code>.</p></div><button class="secondary-button" id="refresh-questions" type="button">↻ Muat ulang</button></div>
+          <div class="panel table-panel">
+            <div class="table-toolbar"><div><strong>Daftar soal</strong><small id="question-summary">Memuat data…</small></div><input id="question-search" type="search" placeholder="Cari teks soal…" aria-label="Cari teks soal"></div>
+            <div class="table-scroll"><table><thead><tr><th>ID</th><th>PERTANYAAN</th><th>OPSI</th></tr></thead><tbody id="questions-body"><tr><td colspan="3" class="empty-cell">Sedang mengambil data soal…</td></tr></tbody></table></div>
+            <p class="table-footnote">Halaman ini hanya membaca soal. Source backend saat ini belum menyediakan endpoint tambah, edit, atau hapus soal.</p>
+          </div>
+        </section>
+
+        <section id="results-section" class="content-section" hidden>
+          <div class="page-heading-row"><div><p class="eyebrow">REKAPITULASI</p><h1>Hasil Ujian</h1><p class="page-subtitle">Informasi endpoint hasil yang tersedia pada backend.</p></div></div>
+          <div class="panel endpoint-panel">
+            <span class="endpoint-icon">▤</span><h2>Endpoint hasil per peserta</h2>
+            <p>Backend menyediakan hasil untuk satu ID pengguna, bukan daftar seluruh hasil. Untuk membuka hasil, masukkan ID pengguna yang valid.</p>
+            <form id="result-form" class="result-form">
+              <label for="result-user-id">ID pengguna</label><div class="result-form-row"><input id="result-user-id" type="number" min="1" step="1" placeholder="Contoh: 12" required><button class="primary-button" type="submit">Lihat hasil</button></div>
+            </form>
+            <div id="result-output" class="result-output" hidden></div>
+            <p class="table-footnote">Endpoint: <code>GET /api/result/:user_id</code>. Jika hasil belum tersedia, backend dapat mengembalikan HTTP 404.</p>
+          </div>
+        </section>
+
+        <footer class="footer"><span>© <span id="year"></span> UNIVERSITAS HALU OLEO</span><span>Dashboard Sistem Ujian Online</span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

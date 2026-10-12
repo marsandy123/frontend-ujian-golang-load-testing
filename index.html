@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b63">
+  <title>Masuk | Sistem Ujian Online</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/login.js" defer></script>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="intro-panel" aria-label="Informasi sistem ujian">
+      <div class="brand">
+        <div class="brand-mark logo-mark">
+          <img src="assets/logo-universitas-halu-oleo.png" alt="Logo Universitas Halu Oleo">
+        </div>
+        <div>
+          <p class="brand-name">UNIVERSITAS HALU OLEO</p>
+          <p class="brand-caption">Sistem Ujian Berbasis Web</p>
+        </div>
+      </div>
+
+      <div class="intro-copy">
+        <span class="eyebrow"><span class="status-dot"></span> PLATFORM AKADEMIK DIGITAL</span>
+        <h1>Uji kemampuanmu.<br><span>Raih hasil terbaik.</span></h1>
+        <p>Masuk ke ruang ujian digital untuk mengikuti ujian dan melihat hasil pengerjaan secara terstruktur.</p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">✓</span>
+          <div><strong>Akses praktis</strong><small>Masuk menggunakan akun peserta</small></div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">⌁</span>
+          <div><strong>Proses terintegrasi</strong><small>Terhubung dengan layanan REST API</small></div>
+        </div>
+      </div>
+      <div class="decor decor-one"></div>
+      <div class="decor decor-two"></div>
+      <p class="panel-footer">Belajar, berlatih, dan berkembang.</p>
+    </section>
+
+    <section class="form-panel" aria-labelledby="login-title">
+      <div class="form-topline">
+        <span class="secure-label"><span class="lock-icon" aria-hidden="true">▣</span> AREA PESERTA</span>
+        <span class="topline-note">Akses akun Anda</span>
+      </div>
+
+      <div class="login-card">
+        <div class="mobile-brand">
+          <div class="brand-mark small logo-mark">
+            <img src="assets/logo-universitas-halu-oleo.png" alt="Logo Universitas Halu Oleo">
+          </div>
+          <span class="brand-name">UNIVERSITAS HALU OLEO</span>
+        </div>
+        <div class="heading-block">
+          <p class="section-kicker">SELAMAT DATANG KEMBALI</p>
+          <h2 id="login-title">Masuk ke akun</h2>
+          <p class="subheading">Masukkan username dan kata sandi untuk melanjutkan.</p>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="field-group">
+            <label for="username">Username</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"></path></svg>
+              </span>
+              <input id="username" name="username" type="text" autocomplete="username"
+                     placeholder="Masukkan username" maxlength="50" required>
+            </div>
+            <small class="field-error" id="username-error"></small>
+          </div>
+
+          <div class="field-group">
+            <div class="label-row">
+              <label for="password">Kata sandi</label>
+            </div>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path><path d="M12 14v2"></path></svg>
+              </span>
+              <input id="password" name="password" type="password" autocomplete="current-password"
+                     placeholder="Masukkan kata sandi" required>
+              <button class="toggle-password" id="toggle-password" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
+            </div>
+            <small class="field-error" id="password-error"></small>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-option"><input id="remember-username" type="checkbox"> <span>Ingat username</span></label>
+            <span class="password-note">Jaga kerahasiaan kata sandi</span>
+          </div>
+
+          <div id="form-message" class="form-message" role="status" aria-live="polite" hidden></div>
+
+          <button class="submit-button" id="submit-button" type="submit">
+            <span class="button-label">Masuk ke sistem</span>
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <div class="help-note">
+          <span class="help-mark" aria-hidden="true">i</span>
+          <p>Kesulitan masuk? Pastikan username dan kata sandi sesuai dengan akun yang terdaftar.</p>
+        </div>
+      </div>
+
+      <footer class="form-footer">
+        <span>© <span id="current-year"></span> UNIVERSITAS HALU OLEO</span>
+        <span><span class="footer-dot"></span> Sistem Ujian Online</span>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#123b63">
+
+    <title>Dashboard Peserta | Universitas Halu Oleo</title>
+
+    <link rel="stylesheet" href="css/peserta.css">
+    <script src="js/peserta.js" defer></script>
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <img
+                src="assets/logo-universitas-halu-oleo.png"
+                alt="Logo Universitas Halu Oleo"
+            >
+
+            <div>
+                <b>UNIVERSITAS HALU OLEO</b>
+                <small>Sistem Ujian Berbasis Web</small>
+            </div>
+        </div>
+
+        <p class="label">MENU PESERTA</p>
+
+        <button class="nav active" type="button" data-page="dashboard">
+            <span aria-hidden="true">▦</span>
+            Dashboard
+        </button>
+
+        <button class="nav" type="button" data-page="exam">
+            <span aria-hidden="true">☷</span>
+            Daftar Soal
+        </button>
+
+        <button class="nav" type="button" data-page="result">
+            <span aria-hidden="true">▤</span>
+            Hasil Ujian
+        </button>
+
+        <div class="bottom">
+            <div class="help">
+                <b>Petunjuk ujian</b>
+                <p>
+                    Baca setiap soal dengan teliti dan periksa jawaban
+                    sebelum dikirim.
+                </p>
+            </div>
+
+            <button class="logout" id="logout" type="button">
+                <span aria-hidden="true">↪</span>
+                Keluar dari akun
+            </button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <button
+                class="menu"
+                id="menu"
+                type="button"
+                aria-label="Buka menu navigasi"
+            >
+                ☰
+            </button>
+
+            <div>
+                UHO <span aria-hidden="true">/</span>
+                <b id="crumb">Dashboard</b>
+            </div>
+
+            <div class="profile">
+                <i aria-hidden="true"></i>
+
+                <div>
+                    <b id="username">Peserta</b>
+                    <small>Peserta ujian</small>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Dashboard utama peserta -->
+            <section id="dashboard-page">
+                <p class="eyebrow">AREA PESERTA</p>
+
+                <div class="head">
+                    <div>
+                        <h1>Dashboard Peserta</h1>
+                        <p>
+                            Selamat datang,
+                            <b id="welcome">Peserta</b>.
+                            Siapkan diri dan kerjakan ujian dengan teliti.
+                        </p>
+                    </div>
+
+                    <div class="date" id="date"></div>
+                </div>
+
+                <div
+                    class="notice"
+                    id="notice"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+
+                <div class="stats">
+                    <article class="card">
+                        <small>Total soal tersedia</small>
+                        <strong id="count">—</strong>
+                        <p>Data dari server ujian</p>
+                    </article>
+
+                    <article class="card">
+                        <small>Status layanan API</small>
+                        <strong id="api">Memeriksa</strong>
+                        <p id="api-note">Menghubungi backend</p>
+                    </article>
+
+                    <article class="card">
+                        <small>Status pengerjaan</small>
+                        <strong id="exam-status">Belum dimulai</strong>
+                        <p>Jawaban dikirim ke server</p>
+                    </article>
+                </div>
+
+                <div class="columns">
+                    <article class="panel">
+                        <h2>Siap mengikuti ujian?</h2>
+                        <p class="muted">
+                            Pastikan koneksi stabil sebelum mulai
+                            mengerjakan soal.
+                        </p>
+
+                        <div class="callout">
+                            <div class="icon" aria-hidden="true">✓</div>
+
+                            <div>
+                                <b>Ujian berbasis web</b>
+                                <p>
+                                    Jawab soal pilihan ganda dan tinjau
+                                    jawaban sebelum dikirim.
+                                </p>
+                            </div>
+                        </div>
+
+                        <ul>
+                            <li>Setiap soal memiliki pilihan A sampai D.</li>
+                            <li>Periksa jawaban sebelum mengirim.</li>
+                            <li>
+                                Pilih metode pengiriman sesuai kebutuhan
+                                pengujian.
+                            </li>
+                        </ul>
+
+                        <button class="primary" id="start" type="button">
+                            Mulai mengerjakan soal →
+                        </button>
+                    </article>
+
+                    <article class="panel">
+                        <h2>Hasil ujian</h2>
+                        <p class="muted">
+                            Periksa hasil berdasarkan akun yang sedang masuk.
+                        </p>
+
+                        <div class="result" id="latest">
+                            Belum memeriksa hasil ujian.
+                        </div>
+
+                        <button class="secondary" id="check" type="button">
+                            Periksa hasil ujian
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Halaman pengerjaan soal -->
+            <section id="exam-page" hidden>
+                <div class="head">
+                    <div>
+                        <p class="eyebrow">UJIAN</p>
+                        <h1>Daftar Soal</h1>
+                        <p>Pilih satu jawaban untuk setiap soal.</p>
+                    </div>
+
+                    <button class="secondary" type="button" data-back>
+                        ← Dashboard
+                    </button>
+                </div>
+
+                <div class="progress">
+                    <b id="progress-title">Soal ujian</b>
+                    <span id="progress-text">Memuat soal…</span>
+
+                    <div class="track">
+                        <div id="fill"></div>
+                    </div>
+                </div>
+
+                <div class="questions" id="questions">
+                    <article class="panel">
+                        Mengambil soal dari server…
+                    </article>
+                </div>
+
+                <div class="panel submit">
+                    <div>
+                        <b>Kirim jawaban</b>
+                        <p class="muted">
+                            Pilih metode pemrosesan jawaban.
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="method">Metode</label>
+
+                        <select id="method">
+                            <option value="sequential">Sequential</option>
+                            <option value="concurrent">
+                                Concurrent (Goroutine)
+                            </option>
+                        </select>
+
+                        <button class="primary" id="send" type="button">
+                            Kirim jawaban
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    class="notice"
+                    id="send-notice"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+            </section>
+
+            <!-- Halaman hasil ujian -->
+            <section id="result-page" hidden>
+                <p class="eyebrow">REKAPITULASI</p>
+                <h1>Hasil Ujian</h1>
+                <p class="muted">
+                    Hasil berdasarkan ID akun peserta yang sedang masuk.
+                </p>
+
+                <article class="panel result-panel">
+                    <h2>Hasil ujian</h2>
+
+                    <button class="primary" id="load-result" type="button">
+                        Muat hasil ujian
+                    </button>
+
+                    <div class="result" id="result-output" hidden></div>
+                </article>
+            </section>
+
+            <footer>
+                <span>© <span id="year"></span> Universitas Halu Oleo</span>
+                <span>Sistem Ujian Berbasis Web</span>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>
